@@ -13,7 +13,7 @@ const VALID_DIGITS = [
   "nine",
 ];
 
-const input = readFileSync("input-1a.txt", { encoding: "utf-8" });
+const input = readFileSync("01/input-1a.txt", { encoding: "utf-8" });
 
 const lines = input.split("\n");
 
@@ -61,7 +61,6 @@ for (const line of lines) {
     let currentDigit: number = -1;
     if (char >= "0" && char <= "9") {
       currentDigit = Number(char);
-      // console.log(line, "Found number digit", currentDigit);
     } else {
       const check = checkAllSubstringsForDigits(line, startIdx, idx);
 
@@ -71,16 +70,13 @@ for (const line of lines) {
 
       currentDigit = check;
       startIdx = idx + 1;
-      // console.log(line, "found string digit", currentDigit);
     }
 
     if (currentDigit !== -1) {
       if (first === -1) {
-        // console.log(line, "Setting first digit", currentDigit);
         first = currentDigit;
       }
 
-      // console.log(line, "Setting last digit", currentDigit);
       last = currentDigit;
     }
   }
@@ -88,7 +84,7 @@ for (const line of lines) {
   const value = first * 10 + last;
   assert(value > 0, `final value ${value} should not be negative`);
   assert(value > 10, `final value ${value} should be more than 10`);
-  console.log(line, "VALUE", value, first, last);
+  // console.log(line, "VALUE", value, first, last);
 
   sum += value;
 }

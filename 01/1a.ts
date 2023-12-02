@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 
-const input = readFileSync("input-1a.txt", { encoding: "utf-8" });
+const input = readFileSync("01/input-1a.txt", { encoding: "utf-8" });
 
 const lines = input.split("\n");
 
