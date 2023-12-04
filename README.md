@@ -2,10 +2,16 @@
 
 Learn more: https://adventofcode.com/2023
 
-## TypeScript
+## Typescript
 
 ```shell
 bun run 01/1a.ts
+
+# Compile Typescript to Javascript (for node)
+npx tsc 04/typescript/4b.ts --target es2016 --module nodenext --moduleResolution nodenext
+node 04/typescript/4b.js
+# Skip compile step with ts-node (much slower)
+npx ts-node 04/typescript/4b.ts
 ```
 
 ## Python
