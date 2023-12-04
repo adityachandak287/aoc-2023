@@ -1,12 +1,4 @@
 import re
-from dataclasses import dataclass
-
-
-@dataclass
-class ScoreRecord:
-    game_id: str
-    winning_count: int
-
 
 INPUT_LINES = []
 with open("04/input-04.txt") as infile:
@@ -16,41 +8,32 @@ score = 0
 
 all_games = []
 
+line_pattern = re.compile(":\s+| \| ")
+space_pattern = re.compile("\s+")
+
 for line in INPUT_LINES:
-    game_id, all_numbers = line.split(": ")
-    winning_str, numbers_str = all_numbers.split(" | ")
-    winning = [int(n) for n in re.split("\s+", winning_str.strip())]
-    numbers = [int(n) for n in re.split("\s+", numbers_str.strip())]
+    game_id, winning_str, numbers_str = line_pattern.split(line)
+    winning = [int(n) for n in space_pattern.split(winning_str.strip())]
+    numbers = [int(n) for n in space_pattern.split(numbers_str.strip())]
 
     common = 0
     for num in numbers:
         if num in winning:
             common += 1
 
-    # print(game_id, common)
-
-    all_games.append(ScoreRecord(game_id=game_id, winning_count=common))
+    all_games.append({"game_id": game_id, "winning_count": common})
 
 all_counts = {}
 
-
-def incr_count(game_id: str, incr: int):
-    if game_id in all_counts:
-        all_counts[game_id] += incr
-    else:
-        all_counts[game_id] = incr
-
-
 for game_idx, game in enumerate(all_games):
-    card_count = 1 + all_counts.get(game.game_id, 0)
-    # print(f"Found {card_count} cards of {game.game_id}")
+    card_count = 1 + all_counts.get(game["game_id"], 0)
 
-    # print("----", game_idx)
-    for idx in range(game_idx + 1, game_idx + 1 + game.winning_count):
-        # print(game_idx, idx, all_games[idx].game_id)
-        incr_count(all_games[idx].game_id, card_count * 1)
+    for idx in range(game_idx + 1, game_idx + 1 + game["winning_count"]):
+        all_counts[all_games[idx]["game_id"]] = (
+            all_counts.get(all_games[idx]["game_id"], 0) + card_count
+        )
 
-    all_counts[game.game_id] = card_count
+    all_counts[game["game_id"]] = card_count
 
-# print(all_counts)
+
 print("SCORE", sum(all_counts.values()))
