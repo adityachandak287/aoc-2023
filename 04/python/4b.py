@@ -9,7 +9,7 @@ class ScoreRecord:
 
 
 INPUT_LINES = []
-with open("04/input-4a.txt") as infile:
+with open("04/input-04.txt") as infile:
     INPUT_LINES = infile.read().split("\n")
 
 score = 0
@@ -30,8 +30,6 @@ for line in INPUT_LINES:
     # print(game_id, common)
 
     all_games.append(ScoreRecord(game_id=game_id, winning_count=common))
-
-print("====")
 
 all_counts = {}
 
