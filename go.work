@@ -1,6 +1,7 @@
 go 1.20
 
 use (
-	./templates/go
 	./04/go
+	./05/go
+	./templates/go
 )
