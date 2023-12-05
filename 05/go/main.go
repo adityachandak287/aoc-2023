@@ -5,6 +5,7 @@ import (
 	"log"
 	"math"
 	"os"
+	"runtime"
 	"strconv"
 	"strings"
 	"sync"
@@ -14,6 +15,7 @@ import (
 func main() {
 	inputFile := flag.String("input", "input", "Input file relative path")
 	part := flag.String("part", "A", "Implementation of part A or B of the problem")
+	maxProcs := flag.Int("maxprocs", runtime.NumCPU(), "Max number of go routines to use in Part B V3 implementation")
 
 	flag.Parse()
 
@@ -36,7 +38,7 @@ func main() {
 	case "BV2":
 		answer = PartBV2(lines)
 	case "BV3":
-		answer = PartBV3(lines)
+		answer = PartBV3(lines, *maxProcs)
 	default:
 		log.Panic("Invalid input for part")
 	}
@@ -267,7 +269,7 @@ func PartBV2(lines []string) int {
 }
 
 // Bounded concurrency - limit max number of go routines
-func PartBV3(lines []string) int {
+func PartBV3(lines []string, maxProcs int) int {
 	seedsRow := strings.Split(lines[0], "seeds: ")[1]
 	log.Println(seedsRow)
 
@@ -302,8 +304,9 @@ func PartBV3(lines []string) int {
 
 	results := make(chan int, numSeedPairs)
 
-	const maxRoutines = 6
-	guard := make(chan int, maxRoutines)
+	guard := make(chan int, maxProcs)
+
+	log.Printf("Limiting max go routines to %d", maxProcs)
 
 	for idx := 0; idx < len(seeds); idx += 2 {
 		guard <- idx
