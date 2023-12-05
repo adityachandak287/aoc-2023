@@ -1,0 +1,34 @@
+Building golang binary for day 05
+Benchmark 1: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1
+  Time (abs ≡):        287.194 s               [User: 286.816 s, System: 0.644 s]
+ 
+Benchmark 2: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2
+  Time (abs ≡):        216.434 s               [User: 379.940 s, System: 0.604 s]
+ 
+Benchmark 3: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3
+  Time (abs ≡):        152.698 s               [User: 397.685 s, System: 0.660 s]
+ 
+Benchmark 4: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 4
+  Time (abs ≡):        118.815 s               [User: 413.816 s, System: 0.604 s]
+ 
+Benchmark 5: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 5
+  Time (abs ≡):        120.646 s               [User: 461.519 s, System: 0.644 s]
+ 
+Benchmark 6: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 6
+  Time (abs ≡):        120.096 s               [User: 522.105 s, System: 0.548 s]
+ 
+Benchmark 7: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7
+  Time (abs ≡):        111.385 s               [User: 531.325 s, System: 0.677 s]
+ 
+Benchmark 8: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8
+  Time (abs ≡):        106.851 s               [User: 523.583 s, System: 0.651 s]
+ 
+Summary
+  '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8' ran
+    1.04 times faster than '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7'
+    1.11 times faster than '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 4'
+    1.12 times faster than '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 6'
+    1.13 times faster than '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 5'
+    1.43 times faster than '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3'
+    2.03 times faster than '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2'
+    2.69 times faster than '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1'
