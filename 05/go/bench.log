@@ -1,28 +1,29 @@
-Building golang binary for day 05
+-> Output from running the benchmark on a laptop with 8 hyperthreaded cores
+
 Benchmark 1: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1
   Time (abs ≡):        287.194 s               [User: 286.816 s, System: 0.644 s]
- 
+
 Benchmark 2: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2
   Time (abs ≡):        216.434 s               [User: 379.940 s, System: 0.604 s]
- 
+
 Benchmark 3: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3
   Time (abs ≡):        152.698 s               [User: 397.685 s, System: 0.660 s]
- 
+
 Benchmark 4: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 4
   Time (abs ≡):        118.815 s               [User: 413.816 s, System: 0.604 s]
- 
+
 Benchmark 5: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 5
   Time (abs ≡):        120.646 s               [User: 461.519 s, System: 0.644 s]
- 
+
 Benchmark 6: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 6
   Time (abs ≡):        120.096 s               [User: 522.105 s, System: 0.548 s]
- 
+
 Benchmark 7: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7
   Time (abs ≡):        111.385 s               [User: 531.325 s, System: 0.677 s]
- 
+
 Benchmark 8: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8
   Time (abs ≡):        106.851 s               [User: 523.583 s, System: 0.651 s]
- 
+
 Summary
   '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8' ran
     1.04 times faster than '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7'
@@ -32,3 +33,179 @@ Summary
     1.43 times faster than '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3'
     2.03 times faster than '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2'
     2.69 times faster than '05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1'
+
+----
+
+-> Output from running the benchmark on a AWS EC2 t3.2xlarge type instance (8 VCPUs)
+
+Benchmark 1: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1
+  Time (abs ≡):        281.392 s               [User: 281.880 s, System: 0.513 s]
+
+Benchmark 2: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2
+  Time (abs ≡):        160.727 s               [User: 283.750 s, System: 0.519 s]
+
+Benchmark 3: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3
+  Time (abs ≡):        114.762 s               [User: 290.597 s, System: 0.723 s]
+
+Benchmark 4: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 4
+  Time (abs ≡):        92.768 s               [User: 291.382 s, System: 0.694 s]
+
+Benchmark 5: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 5
+  Time (abs ≡):        83.392 s               [User: 353.118 s, System: 0.668 s]
+
+Benchmark 6: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 6
+  Time (abs ≡):        97.302 s               [User: 382.156 s, System: 0.871 s]
+
+Benchmark 7: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7
+  Time (abs ≡):        78.383 s               [User: 402.246 s, System: 0.751 s]
+
+Benchmark 8: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8
+  Time (abs ≡):        99.379 s               [User: 402.729 s, System: 0.915 s]
+
+Summary
+  05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7 ran
+    1.06 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 5
+    1.18 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 4
+    1.24 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 6
+    1.27 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8
+    1.46 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3
+    2.05 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2
+    3.59 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1
+
+----
+
+-> Output from running the benchmark on a AWS EC2 m6i.2xlarge type instance (8 VCPUs) (2 runs)
+
+Benchmark 1: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1
+  Time (mean ± σ):     234.745 s ±  0.064 s    [User: 234.811 s, System: 0.214 s]
+  Range (min … max):   234.700 s … 234.790 s    2 runs
+
+Benchmark 2: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2
+  Time (mean ± σ):     133.529 s ±  0.093 s    [User: 234.850 s, System: 0.204 s]
+  Range (min … max):   133.463 s … 133.594 s    2 runs
+
+Benchmark 3: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3
+  Time (mean ± σ):     98.129 s ±  0.009 s    [User: 234.955 s, System: 0.202 s]
+  Range (min … max):   98.123 s … 98.136 s    2 runs
+
+Benchmark 4: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 4
+  Time (mean ± σ):     74.895 s ±  0.030 s    [User: 234.989 s, System: 0.276 s]
+  Range (min … max):   74.874 s … 74.916 s    2 runs
+
+Benchmark 5: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 5
+  Time (mean ± σ):     69.917 s ±  6.122 s    [User: 293.621 s, System: 0.292 s]
+  Range (min … max):   65.588 s … 74.246 s    2 runs
+
+Benchmark 6: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 6
+  Time (mean ± σ):     84.876 s ±  7.422 s    [User: 317.937 s, System: 0.250 s]
+  Range (min … max):   79.628 s … 90.124 s    2 runs
+
+Benchmark 7: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7
+  Time (mean ± σ):     83.761 s ±  8.613 s    [User: 366.786 s, System: 0.472 s]
+  Range (min … max):   77.671 s … 89.851 s    2 runs
+
+Benchmark 8: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8
+  Time (mean ± σ):     75.704 s ±  6.091 s    [User: 361.923 s, System: 0.408 s]
+  Range (min … max):   71.397 s … 80.011 s    2 runs
+
+Summary
+  05/go/main --input 05/input-05.txt --part BV3 --maxprocs 5 ran
+    1.07 ± 0.09 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 4
+    1.08 ± 0.13 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8
+    1.20 ± 0.16 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7
+    1.21 ± 0.15 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 6
+    1.40 ± 0.12 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3
+    1.91 ± 0.17 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2
+    3.36 ± 0.29 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1
+
+----
+
+-> Output from running the benchmark on a AWS EC2 m6a.2xlarge type instance (8 VCPUs) (2 runs)
+
+Benchmark 1: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1
+  Time (mean ± σ):     221.781 s ±  0.033 s    [User: 221.740 s, System: 0.252 s]
+  Range (min … max):   221.758 s … 221.804 s    2 runs
+
+Benchmark 2: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2
+  Time (mean ± σ):     133.879 s ±  0.083 s    [User: 234.833 s, System: 0.234 s]
+  Range (min … max):   133.821 s … 133.938 s    2 runs
+
+Benchmark 3: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3
+  Time (mean ± σ):     90.929 s ±  0.019 s    [User: 221.410 s, System: 0.292 s]
+  Range (min … max):   90.915 s … 90.942 s    2 runs
+
+Benchmark 4: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 4
+  Time (mean ± σ):     71.374 s ±  3.011 s    [User: 227.942 s, System: 0.224 s]
+  Range (min … max):   69.245 s … 73.503 s    2 runs
+
+Benchmark 5: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 5
+  Time (mean ± σ):     61.066 s ±  0.061 s    [User: 256.652 s, System: 0.400 s]
+  Range (min … max):   61.023 s … 61.108 s    2 runs
+
+Benchmark 6: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 6
+  Time (mean ± σ):     62.487 s ±  2.326 s    [User: 296.829 s, System: 0.318 s]
+  Range (min … max):   60.842 s … 64.131 s    2 runs
+
+Benchmark 7: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7
+  Time (mean ± σ):     74.246 s ± 14.319 s    [User: 331.541 s, System: 0.360 s]
+  Range (min … max):   64.121 s … 84.371 s    2 runs
+
+Benchmark 8: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8
+  Time (mean ± σ):     78.201 s ±  2.780 s    [User: 313.934 s, System: 0.210 s]
+  Range (min … max):   76.235 s … 80.166 s    2 runs
+
+Summary
+  05/go/main --input 05/input-05.txt --part BV3 --maxprocs 5 ran
+    1.02 ± 0.04 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 6
+    1.17 ± 0.05 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 4
+    1.22 ± 0.23 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7
+    1.28 ± 0.05 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8
+    1.49 ± 0.00 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3
+    2.19 ± 0.00 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2
+    3.63 ± 0.00 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1
+
+----
+
+-> Output from running the benchmark on a AWS EC2 m6g.2xlarge type instance (8 VCPUs) (2 runs)
+
+Benchmark 1: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1
+  Time (mean ± σ):     403.824 s ±  0.006 s    [User: 403.695 s, System: 0.350 s]
+  Range (min … max):   403.820 s … 403.828 s    2 runs
+
+Benchmark 2: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2
+  Time (mean ± σ):     228.733 s ±  0.125 s    [User: 403.791 s, System: 0.330 s]
+  Range (min … max):   228.645 s … 228.821 s    2 runs
+
+Benchmark 3: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3
+  Time (mean ± σ):     162.232 s ±  0.038 s    [User: 403.741 s, System: 0.240 s]
+  Range (min … max):   162.205 s … 162.259 s    2 runs
+
+Benchmark 4: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 4
+  Time (mean ± σ):     122.845 s ±  0.011 s    [User: 403.685 s, System: 0.300 s]
+  Range (min … max):   122.837 s … 122.853 s    2 runs
+
+Benchmark 5: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 5
+  Time (mean ± σ):     110.335 s ±  0.028 s    [User: 403.591 s, System: 0.375 s]
+  Range (min … max):   110.315 s … 110.355 s    2 runs
+
+Benchmark 6: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 6
+  Time (mean ± σ):     110.341 s ±  0.008 s    [User: 403.626 s, System: 0.385 s]
+  Range (min … max):   110.336 s … 110.346 s    2 runs
+
+Benchmark 7: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7
+  Time (mean ± σ):     110.363 s ±  0.010 s    [User: 403.676 s, System: 0.335 s]
+  Range (min … max):   110.357 s … 110.370 s    2 runs
+
+Benchmark 8: 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8
+  Time (mean ± σ):     110.332 s ±  0.014 s    [User: 403.643 s, System: 0.335 s]
+  Range (min … max):   110.322 s … 110.342 s    2 runs
+
+Summary
+  05/go/main --input 05/input-05.txt --part BV3 --maxprocs 8 ran
+    1.00 ± 0.00 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 5
+    1.00 ± 0.00 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 6
+    1.00 ± 0.00 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 7
+    1.11 ± 0.00 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 4
+    1.47 ± 0.00 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 3
+    2.07 ± 0.00 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 2
+    3.66 ± 0.00 times faster than 05/go/main --input 05/input-05.txt --part BV3 --maxprocs 1
