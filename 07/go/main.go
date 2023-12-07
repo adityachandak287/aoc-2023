@@ -169,7 +169,7 @@ func PartA(lines []string) int {
 }
 
 func PartB(lines []string) int {
-	allCards := []byte("23456789TJQKA")
+	allCards := []byte("J23456789TQKA")
 
 	allCardsMap := make(map[byte]byte)
 
@@ -197,9 +197,14 @@ func PartB(lines []string) int {
 		hasPairB := false
 		var pairA byte
 		var pairB byte
+		jokers := 0
 
 		for _, card := range hand.cards {
 			counts[allCardsMap[card]] += 1
+
+			if card == 'J' {
+				jokers += 1
+			}
 
 			count := counts[allCardsMap[card]]
 
@@ -246,6 +251,57 @@ func PartB(lines []string) int {
 			hand.strength = HighCard
 		}
 
+		if jokers > 0 {
+			switch hand.strength {
+			case FiveOfAKind:
+				// already best hand
+			case FourOfAKind:
+				// AAAAK, joker can be A or K
+				if jokers == 1 || jokers == 4 {
+					hand.strength = FiveOfAKind
+				} else {
+					log.Panic("FourOfAKind can only have 1 or 4 jokers, found ", jokers)
+				}
+			case FullHouse:
+				// AAAKK, joker can be A or K
+				if jokers == 2 || jokers == 3 {
+					hand.strength = FiveOfAKind
+				} else {
+					log.Panic("FullHouse can only have 2 or 3 jokers, found ", jokers)
+				}
+			case ThreeOfAKind:
+				// 777AK, joker can be 7, A or K
+				if jokers == 1 || jokers == 3 {
+					hand.strength = FourOfAKind
+				} else {
+					log.Panic("ThreeOfAKind can only have 1 joker, found ", jokers)
+				}
+			case TwoPair:
+				// AAKKT, joker can be A,K,T
+				if jokers == 2 {
+					hand.strength = FourOfAKind
+				} else if jokers == 1 {
+					hand.strength = FullHouse
+				} else {
+					log.Panic("TwoPair can only have 1 or 2 jokers, found ", jokers)
+				}
+			case SinglePair:
+				// AA234, joker can be A, 2, 3, 4
+				if jokers == 1 || jokers == 2 {
+					hand.strength = ThreeOfAKind
+				} else {
+					log.Panic("SinglePair can only have 1 or 2 jokers, found ", jokers)
+				}
+			case HighCard:
+				// A2345, joker can be any of the cards
+				if jokers == 1 {
+					hand.strength = SinglePair
+				} else {
+					log.Panic("HighCard can only have 1 joker, found ", jokers)
+				}
+			}
+		}
+
 		hands[lineIdx] = hand
 	}
 
@@ -269,8 +325,8 @@ func PartB(lines []string) int {
 		}
 	})
 
-	// for _, h := range hands {
-	// 	log.Println(string(h.cards), h.bid, h.strength)
+	// for idx, h := range hands {
+	// 	log.Println(string(h.cards), h.bid, h.strength, idx+1)
 	// }
 
 	answer := 0
