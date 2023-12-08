@@ -47,4 +47,4 @@ To bootstrap Golang solution for day 5 for example
 bash 04/bench.sh
 ```
 
-Benchmark output: [04/bench.sh](04/bench.sh)
+Benchmark output: [04/bench.log](04/bench.log)
