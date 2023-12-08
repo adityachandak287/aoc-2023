@@ -4,5 +4,6 @@ use (
 	./04/go
 	./05/go
 	./07/go
+	./08/go
 	./templates/go
 )
