@@ -6,12 +6,15 @@ import (
 	"os"
 	"regexp"
 	"strings"
-	"time"
+
+	"github.com/schollz/progressbar/v3"
 )
 
 func main() {
 	inputFile := flag.String("input", "input", "Input file relative path")
 	part := flag.String("part", "A", "Implementation of part A or B of the problem")
+	checkpoint := flag.Int("checkpoint", int(1e6), "Checkpoint for reporting part B solution")
+	known := flag.Bool("known", false, "Part B will run with known progress length (by first solving using PartBV2)")
 
 	flag.Parse()
 
@@ -30,7 +33,7 @@ func main() {
 	case "A":
 		answer = PartA(lines)
 	case "B":
-		answer = PartB(lines)
+		answer = PartB(lines, *checkpoint, *known)
 	case "BV2":
 		answer = PartBV2(lines)
 	default:
@@ -81,8 +84,8 @@ func PartA(lines []string) int {
 	return numMoves
 }
 
-// Would have run for 100 hours!
-func PartB(lines []string) int {
+// NOTE: Will take ~800 hours, lol
+func PartB(lines []string, checkpoint int, known bool) int {
 	moves := strings.Split(lines[0], "")
 
 	nodeMap := make(map[string]Node)
@@ -103,11 +106,19 @@ func PartB(lines []string) int {
 	moveIdx := 0
 	numMoves := 0
 	numZ := 0
-	start := time.Now()
+
+	var progress *progressbar.ProgressBar
+	if !known {
+		progress = progressbar.Default(-1)
+	} else {
+		progress = progressbar.Default(int64(PartBV2(lines)))
+	}
+	progress.Describe("Calculating moves")
+
 	for numZ != len(positions) {
 		move := moves[moveIdx]
 		moveIdx = (moveIdx + 1) % len(moves)
-		
+
 		numZ = 0
 		for posIdx := range positions {
 			if move == "L" {
@@ -125,12 +136,8 @@ func PartB(lines []string) int {
 
 		numMoves += 1
 
-		const checkpoint = int(1e7)
-		if numMoves % checkpoint == 0 {
-			duration := time.Since(start)
-			rate := int64(checkpoint) * 1000 / duration.Milliseconds() // moves per second
-			log.Printf("Calculated %d moves (%d total) in %s (%d moves/second)", checkpoint, numMoves, duration, rate)
-			start = time.Now()
+		if numMoves%checkpoint == 0 {
+			progress.Add(checkpoint)
 		}
 	}
 
@@ -174,7 +181,7 @@ func PartBV2(lines []string) int {
 			moveIdx = (moveIdx + 1) % len(moves)
 			numMoves += 1
 		}
-		log.Printf("%s takes %d moves", pos, numMoves)
+		// log.Printf("%s takes %d moves", pos, numMoves)
 		movesRequired[idx] = numMoves
 	}
 
@@ -183,14 +190,13 @@ func PartBV2(lines []string) int {
 	return numMoves
 }
 
-
 // https://siongui.github.io/2017/06/03/go-find-lcm-by-gcd/
 // greatest common divisor (GCD) via Euclidean algorithm
 func GCD(a, b int) int {
 	for b != 0 {
-			t := b
-			b = a % b
-			a = t
+		t := b
+		b = a % b
+		a = t
 	}
 	return a
 }
@@ -201,7 +207,7 @@ func LCM(a, b int, integers ...int) int {
 	result := a * b / GCD(a, b)
 
 	for i := 0; i < len(integers); i++ {
-			result = LCM(result, integers[i])
+		result = LCM(result, integers[i])
 	}
 
 	return result
