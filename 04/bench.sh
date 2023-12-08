@@ -10,5 +10,4 @@ hyperfine \
  --min-runs 10 \
  -n bun-ts "bun run 04/typescript/4b.ts" \
  -n python "python3 04/python/4b.py" \
- -n go-run "go run ./$DAY/go --input $DAY/input-$DAY.txt --part B" \
- -n go-binary "$DAY/go/main --input $DAY/input-$DAY.txt --part B"
+ -n go "$DAY/go/main --input $DAY/input-$DAY.txt --part B"

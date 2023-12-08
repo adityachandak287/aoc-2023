@@ -1,22 +1,17 @@
 Building golang binary for day 04
 Benchmark 1: bun-ts
-  Time (mean ± σ):      28.8 ms ±   5.7 ms    [User: 23.1 ms, System: 13.5 ms]
-  Range (min … max):    25.7 ms …  64.3 ms    105 runs
+  Time (mean ± σ):      26.5 ms ±   1.0 ms    [User: 24.2 ms, System: 10.5 ms]
+  Range (min … max):    25.0 ms …  31.1 ms    111 runs
  
 Benchmark 2: python
-  Time (mean ± σ):     120.2 ms ±   3.5 ms    [User: 69.4 ms, System: 35.0 ms]
-  Range (min … max):   115.2 ms … 132.2 ms    22 runs
+  Time (mean ± σ):      26.1 ms ±   3.0 ms    [User: 23.4 ms, System: 2.9 ms]
+  Range (min … max):    22.0 ms …  37.4 ms    114 runs
  
-Benchmark 3: go-run
-  Time (mean ± σ):     119.7 ms ±  12.7 ms    [User: 138.3 ms, System: 56.2 ms]
-  Range (min … max):   109.6 ms … 163.1 ms    23 runs
- 
-Benchmark 4: go-binary
-  Time (mean ± σ):       2.6 ms ±   1.3 ms    [User: 2.4 ms, System: 0.8 ms]
-  Range (min … max):     1.7 ms …  25.6 ms    838 runs
+Benchmark 3: go
+  Time (mean ± σ):       2.1 ms ±   0.3 ms    [User: 2.0 ms, System: 0.5 ms]
+  Range (min … max):     1.6 ms …   4.1 ms    969 runs
  
 Summary
-  'go-binary' ran
-   10.90 ± 5.75 times faster than 'bun-ts'
-   45.28 ± 22.67 times faster than 'go-run'
-   45.43 ± 22.28 times faster than 'python'
+  'go' ran
+   12.39 ± 2.23 times faster than 'python'
+   12.55 ± 1.82 times faster than 'bun-ts'
