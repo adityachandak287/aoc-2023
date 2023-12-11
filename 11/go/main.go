@@ -100,7 +100,7 @@ func PartAB(lines []string, expansionFactor int) int {
 			g1 := galaxies[i]
 			g2 := galaxies[j]
 
-			// Manhattan Distance
+			// Manhattan Distance |x1-x2| + |y1-y2|
 			dist := int(math.Abs(float64(g1.x+colOffset[g1.x])-float64(g2.x+colOffset[g2.x]))) + int(math.Abs(float64(g1.y+rowOffset[g1.y])-float64(g2.y+rowOffset[g2.y])))
 			// log.Println("dist", g1, g2, dist)
 			sum += dist
