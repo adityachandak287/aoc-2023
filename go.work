@@ -6,5 +6,6 @@ use (
 	./07/go
 	./08/go
 	./09/go
+	./11/go
 	./templates/go
 )
